@@ -1,0 +1,172 @@
+<!-- Zone qui s'affiche si le loader charge -->
+<div class="loading" *ngIf="loader.loading">
+	<img src="./images/loader.gif">
+	<p class="chargement">{{loader.message}}</p>
+</div>
+
+<div *ngIf="!loader.loading" class="padding10">
+
+	
+	<div id="systemWindow" class="padding20" *ngIf="success.success">
+		<p class="great">Enregistrement réussi</p>
+		<div class="table">
+			<div class="tableRow">
+				<div class="tableCell tacenter padding10">
+					<button (click)="GoToAddPicture();">  Ajouter des images</button>
+				</div>
+				<div class="tableCell tacenter padding10">
+					<button (click)="BackToList()"> Voir la liste des produits</button>
+				</div>
+				<div class="tableCell tacenter padding10">
+					<button (click)="BackToDetail()"> Voir le produit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- Zone qui affiche si pas d'erreur et pas de systeme en chargement -->
+	<div  id="formadd"  *ngIf="!success.success">
+		<form #productAdd (ngSubmit)="Valider($event,form)" [formGroup]="form">
+			
+				<div class="whiteboard margintop10 ">
+
+				<div class=" table width100 ">
+					<div class="tableCell width50 padding20">
+						<p class="titlewhiteboard">Données d'identification</p></div>
+					<div class="tableCell width80 padding20 taright">
+						<span class="actionButton flaticon-back" (click)="BackToList()"></span>
+					</div>
+				</div>
+					<div class="padding20">
+					<!-- Simple text input -->
+						<div class="eleminput" *ngFor = "let input of simpleInput"  [class.focused] = "input.focus">
+								<div *ngIf="GetErrors(input.name).length>0" class="errordivform">
+						        <p class="perrorform" *ngFor="let errors of GetErrors(input.name)">{{errors}}</p>
+					      	</div>
+							<label for="{{input.name}}">{{input.display}}</label>
+							<input type="text" id="{{input.name}}" name="{{input.name}}" placeholder="{{input.placeholder}}"  formControlName="{{input.name}}" (focus)="input.focus=true" (blur)="input.focus=false">
+						</div>
+						<div class="eleminput"  [class.focused] = "descinput.focus">
+					    	<div *ngIf="errors.product_description.length>0" class="errordivform">
+						        <p class="perrorform" *ngFor="let errors of errors.product_description">{{errors}}</p>
+					      	</div>
+							<label for="product_description">Description</label>
+							<textarea id="product_description" name="product_description" placeholder="Entrer une description" formControlName="product_description"
+							(focus)="descinput.focus=true" (blur)="descinput.focus=false"> </textarea>
+
+						</div>
+					</div>
+				</div>
+			<div class="whiteboard margintop10 ">
+				<p class="titlewhiteboard padding20">Donnée de classification et de stockage</p>
+				<div class="padding20">
+					<div class="eleminput" *ngFor = "let input of listInput"  [class.focused] = "input.focus">
+						<div *ngIf="GetErrors(input.name).length>0" class="errordivform">
+						    <p class="perrorform" *ngFor="let errors of GetErrors(input.name)">{{errors}}</p>
+					    </div>
+						<label for="{{input.name}}">{{input.display}}</label>
+						<select id="{{input.name}}" name="{{input.name}}" formControlName="{{input.name}}"  (focus)="input.focus=true" (blur)="input.focus=false">
+							<option value="0" selected>-</option>
+							<option selected *ngFor="let item of input.data" value="{{item.id}}" >{{item.name}}</option>
+						</select>
+					</div>
+					<div class="eleminput"  [class.focused] = "dateinput.focus">
+						<div *ngIf="errors.product_date.length>0" class="errordivform">
+					        <div class="arrowup"></div>
+					        <p class="perrorform" *ngFor="let errors of errors.product_date">{{errors}}</p>
+				      	</div>
+						<label for="product_date">Date</label>
+						<input type="date" id="product_date" name="product_date" format="yyyy-mm-dd"  formControlName="product_date" (focus)="dateinput.focus=true" (blur)="dateinput.focus=false">
+					</div>
+				</div>
+			</div>
+			<div class="whiteboard margintop10 ">
+				<p class="titlewhiteboard padding20">Pack</p>
+				<div class="padding20">
+					<div class="eleminput"  [class.focused] = "pack.focus">
+				    	<div *ngIf="errors.product_pack.length>0" class="errordivform">
+					        <div class="arrowup"></div>
+					        <p class="perrorform" *ngFor="let errors of errors.product_pack">{{errors}}</p>
+				      	</div>
+						<label for="product_pack">Pack *</label>
+						<select  id="product_pack" name="product_pack_only"  formControlName="product_pack" (focus)="pack.focus=true" (blur)="pack.focus=false">
+							<option value="PACK">Oui</option>
+							<option value="NOT_PACK">Non</option>
+						</select>
+
+					</div>
+					<div class="eleminput"  [class.focused] = "packonly.focus">
+						<label for="product_pack_only">Uniquement pour un pack *</label>
+						<div *ngIf="errors.product_pack_only.length>0" class="errordivform">
+					        <div class="arrowup"></div>
+					        <p class="perrorform" *ngFor="let errors of errors.product_pack_only">{{errors}}</p>
+				      	</div>
+						<select  id="product_pack_only" name="product_pack_only" formControlName="product_pack_only" (focus)="packonly.focus=true" (blur)="packonly.focus=false">
+							<option value="1">Oui</option>
+							<option value="0" >Non</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="whiteboard margintop10 ">
+				<p class="titlewhiteboard padding20">Donnée de technique</p>
+				<div class="padding20">
+					<div class="eleminput"   *ngFor = "let input of tsInput"  [class.focused] = "input.focus">
+						<div *ngIf="GetErrors(input.name).length>0" class="errordivform">
+					        <div class="arrowup"></div>
+					        <p class="perrorform" *ngFor="let errors of GetErrors(input.name)">{{errors}}</p>
+				      	</div>
+						<label for="{{input.name}}">{{input.display}}</label>
+						<input type="text" id="{{input.name}}" name="{{input.name}}" formControlName="{{input.name}}"  (focus)="input.focus=true" (blur)="input.focus=false">
+
+				    	
+					</div>
+				</div>
+			</div>
+			</form>
+			
+			<div class="whiteboard margintop10 ">
+				<div class=" table width100 ">
+					<div class="tableCell width50 padding20">
+						<p class="titlewhiteboard">Fiche technique complémentaire</p></div>
+					<div class="tableCell width80 padding20 taright">
+						<span class="actionButton flaticon-add" (click)="AjouterParam($event)"></span>
+					</div>
+				</div>
+				<div class="padding20">
+					<div *ngFor="let item of ts_detail;let i =index" class="">
+						<div *ngIf="item.errors.length>0" class="errordivform">
+					        <p class="perrorform" *ngFor="let errors of item.errors">{{errors}}</p>
+				      	</div>
+					    <div class="table width100 ">  
+							<div class="tableCell width50 ">
+								<div class="eleminput"  [class.focused] = "item.paramfocus">	
+									<label>Nom du paramètre</label>
+									<input type="text"  [(ngModel)] ="item.paramname" (focus)="item.paramfocus=true" (blur)="item.paramfocus=false" />
+								</div>
+							</div>
+							<div class="tableCell width50 padding1000">
+								<div class="eleminput"  [class.focused] = "item.valuefocus">	
+									<label>Valeur du parametre</label>
+									<input type="text"  [(ngModel)] ="item.value" (focus)="item.valuefocus=true" (blur)="item.valuefocus=false"/>
+								</div>
+							</div>
+							<div class="tableCell deletecell" (click)="RemoveParam(i)"><span class="flaticon-delete"></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="whiteboard padding20 margintop10" *ngIf="categorie != 'ajouter'">
+			<p class="titlewhiteboard">Illustrations</p>
+			<div class="thumbail150" *ngFor = "let item of pictures;let i=index " >
+			<div class="deletePict" (click)="RemovePicture(i,item)"><span class="flaticon-delete"></span></div>
+				<div class='elem' [style.background-image]="'url(' + apiUrl + '/images/products/'+ item.picture_name +')' | safe: 'style'"></div>
+			</div>
+		</div>		
+		<button *ngIf="form.valid" (click)="Valider($event,form)" class="buttonts margin40">{{intituleBtn}}</button>
+		<button *ngIf="!form.valid"  class="buttontsDisabled margin40">Vous devez remplir les champs contenant *</button>
+		<div *ngIf="error.error" class="diverror padding20">
+			<p>{{error.message}}</p>
+		</div>
+	</div>
+</div>

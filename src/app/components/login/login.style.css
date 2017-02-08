@@ -1,0 +1,68 @@
+
+.table{display:table;width:100%;}
+.tableCell{display: table-cell;}
+.taleft{width:50%;padding-right:5px;}
+.taright{width:50%;padding-left:5px;}
+#loginWrapper{
+  position: fixed;top:50%;left:50%;width:340px;height:350px;margin-top:-200px;margin-left:-170px;
+  border:1px solid #eaeaea;background:#fff;
+}
+#form{
+  position: relative;height:400px;overflow:hidden;
+}
+#usernamepart{
+  position: absolute;top:50px;left:0px;width:340px;height:300px;
+}
+#loader{
+  position: absolute;z-index:200;border:1px solid #ccc;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.8);
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+#loader img{
+  display:block;
+  position: absolute;top:50%;left:50%;margin-top:-32px;margin-left:-32px;
+}
+#mdppart{
+  position: absolute;bottom:90px;left:+360px;width:340px;height:150px;
+}
+.usericon{position: relative;width:100px;height:100px;
+  margin:10px auto;}
+.iconavatar{
+  width:100px;height:100px;position:absolute;top:5px;left:5px;border-radius: 50%;
+  border:3px solid #ccc;
+  text-align:center;line-height: 100px;vertical-align: middle;overflow:hidden;
+   -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  background-size: cover;
+}
+.hideavatar{display: none;}
+.iconavatar img{display: block;width:100%;}
+.iconavatar span{margin-top:15px;display:block;font-size:60px;color:#ccc;}
+#emailname{margin-bottom:-20px;margin-top:10px;text-align: center;font-size:12px;height:40px;}
+.identifiantp{text-transform: uppercase;color:#666;font-size:18px;font-family: 'open';}
+.inputarea{
+  width:300px;margin:40px auto;
+}
+.inputarea input{
+  display: block;width:100%;height:40px;border:1px solid #ccc;color:#aaa;padding:5px;
+}
+#mdppart .inputarea{margin:25px auto;}
+.errorelem{font:'open';color:#b8312f;text-align: center;padding:4px;}
+.inputarea .wrongelement{border:1px solid #b8312f;background:rgba(225,73,56,0.5);color:#eee;}
+.inputarea button{
+  margin-top:10px; font: 'open';text-transform: uppercase;cursor:pointer;
+  display: block;width:100%;height:40px;border:1px solid #f5ba42;background:#f5ba42;color:#fff;padding:5px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.inputarea button:hover{background:#fcce54;border:1px solid #fcce54;}
+
+
+.hidepart{
+	display:none;
+}
+
+.info{position: absolute;top:500px;left:150px;width:20px;height:20px;background:red;}

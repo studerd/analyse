@@ -1,0 +1,37 @@
+<div id="loginWrapper">
+	<div id="connectfeedback" class="feedback"></div>
+        <div id="form">
+        <div id="loader" [class.hideavatar] = "!loading">
+            <img src="images/loader.gif">
+        </div>
+            <form action="bl/authentification.json.php" method="post" id="connectForm" data-feedback="#connectfeedback" autocomplete="off" >
+                <div id="usernamepart">
+                    <div class="usericon">
+                        <div id="defaultavatar" class="iconavatar" ><span class="flaticon-people"></span></div>
+                        <div id="pictureclient" 
+                        class="iconavatar" [class.hideavatar] = "!user.show" ><img src="images/avatar/{{user.avatar}}"></div>
+                    </div>
+                    <div class="inputarea" id="partgo">
+                    <p class="errorelem" [class.hideavatar] = "inputidentifiant" >Identifiant non trouvé</p>
+                        <input 	type="text" id="identifiant" name="identifiant" value=""  [(ngModel)]="identifiant" class="input" 
+                        		placeholder="Entrer votre identifiant ou votre email" autocomplete="off" [class.wrongelement] = "!inputidentifiant" />
+                        <button id="suivantbtn" (click)="GetAvatar($event)">Suivant</button>
+                    </div>
+                </div>
+                <div id="mdppart">
+                    <div id="emailname">
+                        <div class="identifiantp">{{user.name}}</div>
+                        <div class="mail">{{user.mail}}</div>
+                    </div>
+                    <div class="inputarea">
+                    <p class="errorelem" [class.hideavatar] = "inputpassword" >Le mot de passe ne correspond pas.</p>
+                        <input type="password" id="password" name="password"  class="input" placeholder="Entrer votre mot de passe" value="" [(ngModel)]="password" [class.wrongelement] = "!inputpassword" />
+                        <div class="table">
+                            <div class="tableCell taleft"><button id="back" (click)="AnimeAvatarReverse()">Retour</button></div>
+                            <div class="tableCell taright"> <button id="seconnecter" (click)="GetCredential($event)">Se connecter</button></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>

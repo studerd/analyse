@@ -1,0 +1,40 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2016-11-20: Created.
+-->
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>
+Created by FontForge 20120731 at Sun Nov 20 19:58:38 2016
+ By Apache
+Created by Apache with FontForge 2.0 (http://fontforge.sf.net)
+</metadata>
+<defs>
+<font id="Flaticon" horiz-adv-x="512" >
+  <font-face 
+    font-family="Flaticon"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="512"
+    panose-1="2 0 6 3 0 0 0 0 0 0"
+    ascent="448"
+    descent="-64"
+    bbox="0 -64 512 448"
+    underline-thickness="25.6"
+    underline-position="-51.2"
+    unicode-range="U+0020-F102"
+  />
+    <missing-glyph />
+    <glyph glyph-name="space" unicode=" " horiz-adv-x="200" 
+ />
+    <glyph glyph-name="uniF100" unicode="&#xf100;" 
+d="M512 396.8l-204.8 -204.8l204.8 -204.8l-51.2002 -51.2002l-204.8 204.8l-204.8 -204.8l-51.2002 51.2002l204.8 204.8l-204.8 204.8l51.2002 51.2002l204.8 -204.8l204.8 204.8z" />
+    <glyph glyph-name="uniF102" unicode="&#xf102;" 
+d="M345.6 132.267c85.334 -29.8662 149.334 -104.533 166.4 -196.267h-42.667c-21.333 98.1338 -108.801 170.667 -213.333 170.667s-192 -72.5342 -213.333 -170.667h-42.667c17.0664 89.5996 81.0664 164.267 166.399 196.267
+c-49.0674 29.8662 -81.0664 83.2002 -81.0664 145.066c0 93.8672 76.8008 170.667 170.667 170.667s170.667 -76.7998 170.666 -170.667c0 -61.8662 -32 -115.199 -81.0664 -145.066zM128 277.333c0 -70.3994 57.6006 -128 128 -128s128 57.6006 128 128
+s-57.6006 128 -128 128s-128 -57.6006 -128 -128z" />
+    <glyph glyph-name="uniF101" unicode="&#xf101;" 
+d="M387.058 202.207c5.58008 -5.58008 5.58008 -14.8076 -0.107422 -20.3867l-241.528 -241.528c-2.78906 -2.89746 -6.54492 -4.29199 -10.1934 -4.29199c-3.64746 0 -7.40332 1.50195 -10.1934 4.29199c-5.68652 5.68652 -5.68652 14.8066 0 20.4941l231.228 231.228
+l-231.228 231.228c-5.68652 5.68652 -5.68652 14.8066 0 20.4941c5.6875 5.68652 14.8076 5.68652 20.4941 0z" />
+  </font>
+</defs></svg>

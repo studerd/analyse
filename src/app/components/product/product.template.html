@@ -1,0 +1,105 @@
+<div class="loading" *ngIf="loader.loading">
+	<img src="./images/loader.gif">
+	<p class="chargement">{{loader.message}}</p>
+</div>
+
+<div *ngIf="!loader.loading" class="padding10">
+
+	<div *ngIf="error.error" class="diverror">
+		<p>{{error.message}}</p>
+	</div>
+	<div *ngIf="!error.error" class="whiteboard margin40">
+		<div class=" table width100 ">
+			<div class="tableCell spcei padding1020">
+				<p class="titlewhiteboard">Liste des produits</p></div>
+			<div class="tableCell width80 padding1020 taright">
+				<span class="actionButton flaticon-add" (click)="AddProduct()"></span>
+			</div>
+		</div><div class=" table width100 ">
+			<div class="tableCell  padding1020">
+				<p class="nbElementPage">
+				<select [(ngModel)]="nbElement" (ngModelChange)="Retrieve()" class="select"><option value="10">10</option><option value="25">25</option><option value="50">50</option></select> produits par page
+				</p></div>
+			<div class="tableCell width25 padding1020 taright">
+			<div class="select recherche">
+				<input type="search" name="" class="select"><span class="flaticon-recherche"></span>
+			</div>
+			</div>
+		</div>
+		<div class="table width100 margintop10  bordertrans" id="listofentite" >
+			<div class="tableRow title ">
+				<div class="tableCell relative">
+					Id 
+					</div>
+				<div class="tableCell relative">Ref
+					<div class="icontri">
+						<span class="flaticon-caret-arrow-up"></span>
+						<span class="flaticon-sort-down"></span>
+					</div>
+				</div>
+				<div class="tableCell relative">Nom<div class="icontri">
+						<span class="flaticon-caret-arrow-up"></span>
+						<span class="flaticon-sort-down"></span>
+					</div>
+				</div>
+				<div class="tableCell relative">Prix<div class="icontri">
+						<span class="flaticon-caret-arrow-up"></span>
+						<span class="flaticon-sort-down"></span>
+					</div>
+				</div>
+				<div class="tableCell relative">Disponibilité<div class="icontri">
+						<span class="flaticon-caret-arrow-up"></span>
+						<span class="flaticon-sort-down"></span>
+					</div>
+				</div>
+				<div class="tableCell relative">Categorie<div class="icontri">
+						<span class="flaticon-caret-arrow-up"></span>
+						<span class="flaticon-sort-down"></span>
+					</div>
+				</div>
+				<div class="tableCell relative">Marque<div class="icontri">
+						<span class="flaticon-caret-arrow-up"></span>
+						<span class="flaticon-sort-down"></span>
+					</div>
+				</div>
+				<div class="tableCell relative">Etat<div class="icontri">
+						<span class="flaticon-caret-arrow-up"></span>
+						<span class="flaticon-sort-down"></span>
+					</div>
+				</div>
+				<div class="tableCell relative">Entrepôt<div class="icontri">
+						<span class="flaticon-caret-arrow-up"></span>
+						<span class="flaticon-sort-down"></span>
+					</div>
+				</div>
+				<div class="tableCell actioncell">Action</div>
+			</div>
+			<div *ngFor ="let product of products;let i=index" class="tableRow line"  [class.impaire]="i%2==0">
+				
+				<div class="tableCell" (click)="ShowDetail(product.product_id)">{{product.product_id}}</div>
+				<div class="tableCell" (click)="ShowDetail(product.product_id)">{{product.product_ref}}</div>
+				<div class="tableCell" (click)="ShowDetail(product.product_id)">{{product.product_name}}</div>
+				<div class="tableCell" (click)="ShowDetail(product.product_id)">{{product.product_price_htva}}</div>
+				<div class="tableCell" (click)="ShowDetail(product.product_id)">{{product.disponibility_name}}</div>
+				<div class="tableCell" (click)="ShowDetail(product.product_id)">{{product.category_name}}</div>
+				<div class="tableCell" (click)="ShowDetail(product.product_id)">{{product.brand_name}}</div>
+				<div class="tableCell" (click)="ShowDetail(product.product_id)">{{product.conditions_name}}</div>
+				<div class="tableCell" (click)="ShowDetail(product.product_id)">{{product.warehouse_name}}</div>
+				<div class="tableCell tacenter">
+					<span class="flaticon-edit actionButton" (click)="EditProduct(product.product_id)"></span>
+					<span class="flaticon-delete actionButton" (click)="DeleteProduct(i,product.product_id)"></span>
+				</div>
+			</div>
+		</div>
+		<div class="table width100 margintop10">
+			<div class="tableRow">
+				<div class="tableCell width50 padding10">
+					{{pagestr}}
+				</div>
+				<div class="tableCell width50 padding10 taright">
+					<button *ngFor="let p of nbPages;let i = index" class="iconbuttonCircle" (click)="ChangePage(i)" [class.pageActive] = "pageCourrante == i">{{i+1}}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

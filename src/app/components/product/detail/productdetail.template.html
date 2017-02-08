@@ -1,0 +1,83 @@
+<!-- Zone qui s'affiche si le loader charge -->
+<div class="loading" *ngIf="loader.loading">
+	<img src="./images/loader.gif">
+	<p class="chargement">{{loader.message}}</p>
+</div>
+<!-- fin de la zone qui s'affiche si le loader charger -->
+<!-- Zone qui s'affiche si le loader ne charge pas -->
+<div *ngIf="!loader.loading" class="padding10">
+
+
+	<!-- Zone qui affiche si les erreurs si il y en  a -->
+	<div *ngIf="error.error" class="diverror padding20">
+		<p>{{error.message}}</p>
+	</div>
+	
+	<!-- Zone qui affiche si pas d'erreur et pas de systeme en chargement -->
+	<div *ngIf="!error.error">
+		
+		<div class="whiteboard">
+			<div class="header">
+				<h3>{{product.name}} REF:{{product.ref}}</h3>
+				<p class="littledesc">{{product.description}}</p>
+				<div class="setIcon">
+					<span class="flaticon-picture" (click)="AjouterImage()"></span>
+					<span class="flaticon-edit" (click)="EditerProduit()"></span>
+					<span class="flaticon-delete" (click)="SupprimerProduit()"></span>
+					<span class="flaticon-back" (click)="BackToList()"></span>
+				</div>
+			</div>
+			<div class="padding20">
+				<div class="table width100 tableDetail">
+					<div class="tableRow" *ngFor = "let item of list;let i=index" [class.impaire]="i%2==0">
+						<div class="tableCell labelCell width30">{{item.intitule}}</div>
+						<div class="tableCell">{{product.Affiche(item.field)}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="whiteboard padding20 margintop10">
+			<p class="titlewhiteboard">Donnée de classification et de stockage</p>
+			<div class="table width100 tableDetail">
+				<div class="tableRow" *ngFor = "let item of listConditionement;let i=index" [class.impaire]="i%2==0">
+					<div class="tableCell labelCell width30">{{item.intitule}}</div>
+					<div class="tableCell">{{product.Affiche(item.field)}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="whiteboard padding20 margintop10">
+			<p class="titlewhiteboard">Pack</p>
+			<div class="table width100 tableDetail">
+				<div class="tableRow" *ngFor = "let item of listPack;let i=index" [class.impaire]="i%2==0">
+					<div class="tableCell labelCell width30">{{item.intitule}}</div>
+					<div class="tableCell">{{product.Affiche(item.field)}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="whiteboard padding20 margintop10">
+			<p class="titlewhiteboard">Donnée de technique</p>
+			<div class="table width100 tableDetail">
+				<div class="tableRow" *ngFor = "let item of technicalList;let i=index" [class.impaire]="i%2==0">
+					<div class="tableCell labelCell width30">{{item.intitule}}</div>
+					<div class="tableCell">{{product.Affiche(item.field)}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="whiteboard padding20 margintop10">
+			<p class="titlewhiteboard">Fiche technique complémentaire</p>
+			<div class="table width100 tableDetail">
+				<div class="tableRow" *ngFor = "let item of product.technical_data;let i=index" [class.impaire]="i%2==0">
+					<div class="tableCell labelCell width30">{{item.paramname}}</div>
+					<div class="tableCell">{{item.value}}</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="whiteboard padding20 margintop10">
+			<p class="titlewhiteboard">Illustrations</p>
+			<div class="thumbail150" *ngFor = "let item of product.picturesArr;">
+				<div class='elem' [style.background-image]="'url(' + apiUrl + '/images/products/'+ item.picture_name +')' | safe: 'style'"></div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,51 @@
+<header id="dashHeader">
+	<div id="blankArea"></div>
+	<div id="logo">ANALYSE</div>
+</header>
+
+<div id="sideMenu">
+<div id="userinfo">
+	<div id="horloge">
+		<div id="avatar"><img src="images/avatar/{{user.avatar}}"></div>
+	    <div id="halfclip">
+	        <div class="halfcircle" id="clipped">
+	        </div>
+	    </div>
+	    <div class="halfcircle" id="fixed">
+	    </div>
+	</div>
+	<div id="Numerique">{{fin}}</div>
+	<div id="line" [style.width]="classHorloge"></div>
+	<p id="nameOfUser">	
+	{{user.prenom}} {{user.nom}}
+	<span class="flaticon-arrows" (click)="ToggleMenu()" [class.turnarrow]="menuUser.show"></span>
+	</p>	
+</div>
+	<nav class="menuUser" [style.height] = "menuUser.height">
+		<p class="liZoneVisible">
+				<span class="icon flaticon-logout"></span>
+				<span class="titlep" (click)="LogOut()">Deconnection</span>
+			</p>
+	</nav>
+	<nav>
+
+		<ul>
+		<li *ngFor="let elem of menu ; let i = index" (click)="Navigate(i,elem.link)" >
+			<p class="liZoneVisible" [class.activeli] = "elem.sousmenu && elem.child.show" >
+				<span class="icon {{elem.icon}}"></span>
+				<span class="titlep">{{elem.title}}</span>
+				<span *ngIf="elem.sousmenu" class="showbarre flaticon-arrowright" [class.rotateIcon] = "elem.child.show"></span>
+			</p>
+			<ul *ngIf="elem.sousmenu" class="sousmenu" [style.height]="elem.child.height">
+				<li *ngFor="let child of elem.child.links" class="lisousmenu">
+					{{child.title}}
+				</li>
+			</ul>
+		</li>
+		</ul>
+	</nav>
+</div>
+
+<section id="contentView">
+	<router-outlet></router-outlet>		
+</section>

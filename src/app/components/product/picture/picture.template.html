@@ -1,0 +1,70 @@
+<!-- Zone qui s'affiche si le loader charge -->
+<div class="loading" *ngIf="loader.loading">
+	<img src="./images/loader.gif">
+	<p class="chargement">{{loader.message}}</p>
+</div>
+
+<div *ngIf="!loader.loading" class="padding10">
+
+	
+	<div id="systemWindow" class="padding20" *ngIf="success.success">
+		<p class="great">Modification réussi</p>
+		<div class="table">
+			<div class="tableRow">
+				<div class="tableCell tacenter padding10">
+					<button (click)="BackToList()"> Voir la liste des produits</button>
+				</div>
+				<div class="tableCell tacenter padding10">
+					<button (click)="BackToDetail()"> Voir le produit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="whiteboard margin20" *ngIf="!success.success">
+	<div class=" table width100 ">
+		<div class="tableCell width80 padding20">
+			<p class="titlewhiteboard">Gestion des images pour le produit #{{product.ref}}</p></div>
+		<div class="tableCell width20 padding20 taright">
+			<span class="actionButton flaticon-back" (click)="BackToList()"></span>
+		</div>
+	</div>
+	<div class="padding20" #im>
+		<form #form>
+			<div class=" table width100 ">
+				<div class="tableCell width80 padding20">
+					<input type="file" name="" class="hidden" multiple accept="image/*" #file (change)="PushInList($event)" />
+					<button (click)="file.click()" class="uploadfile">Choisir des images</button>
+				</div>
+				<div class="tableCell width20 padding20 taright">
+					<button (click)="upload($event)" class="uploadfile">Télécharger les images</button>
+				</div>
+			</div>
+		</form>
+		<div class="table width100 margin40">
+			<div class="tableRow">
+				<div class="tableCell width50 borderdrop" id="dropArea" 
+					[class.dragenter] = "drag" 
+				(drop)="onDrop($event)" (dragenter)="dragenter($event)" (dragleave)="dragleave($event)" (dragover)="dragover($event)">
+					Drop area
+				</div>
+				<div class="tableCell width50 padding10">
+					<div class="table width100 bordertrans" id="listOfItem" >
+						<div class="tableRow title">
+							<div class="tableCell width40 taleft">Nom</div>
+							<div class="tableCell width10">Taille</div>
+							<div class="tableCell width10">Type</div>
+							<div class="tableCell width10">Action</div>
+						</div>
+						<div *ngFor="let item of listPicture; let i=index" class="tableRow line" >
+							<div class="tableCell">{{item.name}}</div>
+							<div class="tableCell tacenter">{{item.size}}</div>
+							<div class="tableCell tacenter">{{item.type}}</div>
+							<div class="tableCell tacenter"><span class="flaticon-delete actionButton" (click)="DeleteInList(i)"></span></div>
+						</div>	
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>
+</div>
