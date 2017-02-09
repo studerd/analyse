@@ -1,3 +1,11 @@
+#How to Use
+Execute `Execute git clone https://github.com/studerd/analyse  folder_name`
+Execute `cd folder_name`
+Execute `npm install`
+And finaly execute `ng serve`
+
+This app run with api, you need to have the api `https://github.com/studerd/analyse-api.git`
+
 # Webapp
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.30.
